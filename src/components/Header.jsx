@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTheme } from './ThemeContext'; 
+import { Link } from 'react-router';
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
@@ -11,9 +12,9 @@ const Header = () => {
         
         <div className="flex items-center space-x-6">
           <ul className="flex space-x-6 text-gray-600 dark:text-gray-300 font-medium">
-            <li><a href="/" className="hover:text-blue-500">Home</a></li>
-            <li><a href="/posts" className="hover:text-blue-500">Posts</a></li>
-            <li><a href="/contact" className="hover:text-blue-500">Contact</a></li>
+            <li><Link to="/" className="hover:text-blue-500">Home</Link></li>
+            <li><Link to="/posts" className="hover:text-blue-500">Posts</Link></li>
+            <li><Link to="/contact" className="hover:text-blue-500">Contact</Link></li>
           </ul>
 
           <button 
