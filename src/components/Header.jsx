@@ -1,10 +1,13 @@
 import React from 'react';
 import { useTheme } from './ThemeContext'; 
 import { Link } from 'react-router';
+import { useUsername, useAuth } from '../components/authWrapper/AuthContext';
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
+  const username = useUsername();
+  const {logout} = useAuth();
   return (
     <header className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-10 transition-colors">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -15,6 +18,10 @@ const Header = () => {
             <li><Link to="/" className="hover:text-blue-500">Home</Link></li>
             <li><Link to="/posts" className="hover:text-blue-500">Posts</Link></li>
             <li><Link to="/contact" className="hover:text-blue-500">Contact</Link></li>
+            <li>
+              
+              {username ? <p className="hover:text-blue-500" onClick={logout}>Hi {username}, Logout</p> : <Link to="/login" className="hover:text-blue-500">Login</Link> } 
+              </li>
           </ul>
 
           <button 
