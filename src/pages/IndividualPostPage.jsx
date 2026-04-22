@@ -4,6 +4,8 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CommentForm from '../components/CommentForm';
+import { useUsername, useAuth } from '../components/authWrapper/AuthContext';
+import { Link } from 'react-router';
 
 function IndividualPostPage() {
   const { postId } = useParams(); 
@@ -11,6 +13,7 @@ function IndividualPostPage() {
   const [user, setUser] = useState(null);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const username = useUsername();
 
   useEffect(() => {
     if (!postId) return;
@@ -77,7 +80,15 @@ function IndividualPostPage() {
         </section>
 
         {/* Passing the logic to update comments list after posting */}
-        <CommentForm postId={postId} onCommentAdded={(newC) => setComments([newC, ...comments])} />
+
+        {username ? 
+          <CommentForm postId={postId} onCommentAdded={(newC) => setComments([newC, ...comments])} />:
+          <div className='mt-8 p-6 bg-white border rounded-lg shadow-sm'>
+            <p className='pb-4'>You are not logged in yet</p>
+            <Link to="/login" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all">Log in</Link> 
+          </div>
+        }
+
       </main>
       <Footer />
     </div>

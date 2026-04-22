@@ -52,8 +52,6 @@ function ContactPage() {
                     >Submit
                     </button>
                 </form>
-
-                
             </div>
 
             <Footer />
