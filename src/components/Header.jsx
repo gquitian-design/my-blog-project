@@ -18,8 +18,7 @@ const Header = () => {
             <li><Link to="/" className="hover:text-blue-500">Home</Link></li>
             <li><Link to="/posts" className="hover:text-blue-500">Posts</Link></li>
             <li><Link to="/contact" className="hover:text-blue-500">Contact</Link></li>
-            <li>
-              
+            <li> 
               {username ? <p className="hover:text-blue-500" onClick={logout}>Hi {username}, Logout</p> : <Link to="/login" className="hover:text-blue-500">Login</Link> } 
               </li>
           </ul>

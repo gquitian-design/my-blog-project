@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router';
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { useUsername, useAuth } from '../components/authWrapper/AuthContext';
 
 function HomePage() {
     const navigate = useNavigate();
+    const username = useUsername();
 
     return(
         <div className="min-h-screen flex flex-col bg-white transition-colors">
@@ -22,12 +24,17 @@ function HomePage() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <button 
-                            onClick={() => navigate('/login')}
-                            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all"
-                        >
-                            Log in
-                        </button>
+                        {username ? 
+                            null
+                            :
+                            <button 
+                                onClick={() => navigate('/login')}
+                                className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all"
+                            >
+                                Log in
+                            </button>
+                        }
+                        
                         <button 
                             onClick={() => navigate('/posts')}
                             className="px-8 py-3 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold rounded-lg shadow-md transition-all"
