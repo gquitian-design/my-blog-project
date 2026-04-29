@@ -9,7 +9,7 @@ const CommentForm = ({ postId, onCommentAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !body) return alert("Please fill in all fields");
+    if (!username || !body) return alert("Please fill in all fields");
 
     try {
       const response = await axios.post(
